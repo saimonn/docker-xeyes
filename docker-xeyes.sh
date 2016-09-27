@@ -5,9 +5,9 @@ export XAUTH=~/.docker.xauth
 touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
-docker run --rm --net host   \
-        -e DISPLAY=$DISPLAY  \
-        -e XAUTHORITY=$XAUTH \
-        -v $XSOCK:$XSOCK:rw  \
-        -v $XAUTH:$XAUTH:rw  \
+docker run --rm               \
+        -e DISPLAY=$DISPLAY   \
+        -e XAUTHORITY=$XAUTH  \
+        -v $XSOCK:$XSOCK:rw   \
+        -v $XAUTH:$XAUTH:rw   \
         xeyes "$@"
